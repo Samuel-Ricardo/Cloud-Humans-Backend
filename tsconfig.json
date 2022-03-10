@@ -11,7 +11,9 @@
       "experimentalDecorators": true,
       "typeRoots": [
         "./src/@types",
-        "./@types",
+        "./src/@types/API",
+        "./src/@types/models",
+        ".pedro",
         "./node_modules/@types"
       ],
 

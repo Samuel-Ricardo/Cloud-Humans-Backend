@@ -1,6 +1,7 @@
-import { _Response } from "@cloud/API";
-import { Work } from "@cloud/model";
+
 import { NextFunction, Request, Response } from "express";
+import { _Response } from "../../types/API/Response";
+import { Work } from "../../types/models/Work";
 import WorkflowService from "./workflow.service";
 
 export default class WorkflowController {
