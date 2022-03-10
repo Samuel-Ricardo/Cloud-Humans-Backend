@@ -5,7 +5,7 @@ import { generateScore } from "../../utils";
 
 export default class WorkflowService {
 
-  async match(value: number, user: User): Promise<_Response<Work>> {
+  async match(user: User): Promise<_Response<Work>> {
 
     const work: Work = {} as Work;
     work.score = generateScore(user);
