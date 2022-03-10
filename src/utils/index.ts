@@ -1,5 +1,6 @@
-import { User } from "@cloud/model";
+
 import { educational_levels } from "../config/educational_level";
+import { User } from "../types/models/User";
 
 export function generateScore(user: User): number {
   if (user.age < 18) return -1;
