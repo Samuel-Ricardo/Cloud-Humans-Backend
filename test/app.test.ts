@@ -75,5 +75,19 @@ describe('Workflow Service', () => {
   })
 
 
+  it('Should trhow error', async () => {
+    const { controller, service } = setup();
+    const user:User = {
+      age: 15,
+      education_level: "no_education",
+      past_experiences: { sales: true, support: false },
+      internet_test: { download_speed: 4, upload_speed: 3 },
+      writing_score: 0.2,
+      referral_code: 'token124'
+    }
 
+    const result = await service.match(user);
+
+    expect(result).toBe(undefined)
+  })
 })
