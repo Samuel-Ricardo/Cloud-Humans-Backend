@@ -4,6 +4,12 @@
   "main": "index.ts",
   "author": "Samuel_Ricardo <samuelricardoofficial@gmail.com>",
   "license": "MIT",
+
+  "scripts": {
+    "start": "ts-node ./src/index.ts ",
+    "build": "npx tsc ./src/index.ts"
+  },
+
   "dependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.21",
