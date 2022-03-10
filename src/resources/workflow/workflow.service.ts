@@ -1,6 +1,7 @@
-import { User, Work } from "@cloud/model";
-import { _Response } from "@cloud/API";
 import projects from "../../storage/projects";
+import { _Response } from "../../types/API/Response";
+import { User } from "../../types/models/User";
+import { Work } from "../../types/models/Work";
 import { generateScore } from "../../utils";
 
 export default class WorkflowService {
