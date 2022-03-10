@@ -24,5 +24,56 @@ function setup() {
 }
 
 describe('Workflow Service', () => {
+  it('Should match project', async () => {
+
+    const { controller, service } = setup();
+
+    const user:User = {
+      age: 27,
+      education_level: 'bachelors_degree_or_high',
+      past_experiences: { sales: true, support: true },
+      internet_test: { download_speed: 80, upload_speed: 78.9 },
+      writing_score: 1,
+      referral_code: 'token1234'
+    }
+
+    const result = await service.match(user);
+
+    console.log(result);
+
+    expect(result).toBe({
+      data: {
+          eligible_projects: [
+              {
+                  title: "Calculate the Dark Matter of the universe for Nasa",
+                  score: 10
+              },
+              {
+                  title: "Determine if the Schrodinger's cat is alive",
+                  score: 5
+              },
+              {
+                  title: "Attend to users support for a YXZ Company",
+                  score: 3
+              },
+              {
+                  title: "Collect specific people information from their social media for XPTO Company",
+                  score: 2
+              }
+          ],
+          ineligible_projects: [],
+          score: 13,
+          selected_project: {
+              title: "Calculate the Dark Matter of the universe for Nasa",
+              score: 10
+          }
+      },
+      error: false,
+      message: "Your selected project is Calculate the Dark Matter of the universe for Nasa",
+      status: 200
+  })
+  })
+
+
 
 })
