@@ -1,5 +1,5 @@
 declare module '@cloud' {
-  export interface internet{
+  export interface Internet{
     download_speed: number,
     upload_speed: number
   }
