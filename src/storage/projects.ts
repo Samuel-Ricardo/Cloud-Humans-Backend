@@ -1,4 +1,5 @@
-import { Project } from "@cloud/model";
+import { Project } from "../types/models/project";
+
 
 
 const projects: Project[] = [
