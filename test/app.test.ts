@@ -6,17 +6,17 @@ jest.mock('../src/resources/workflow/workflow.controller')
 jest.mock("../src/resources/workflow/workflow.service");
 //jest.mock("../src/types/models/User");
 
-//const controllerM = WorkflowController as jest.Mock<WorkflowController>
-//const serviceM = WorkflowService as jest.Mock<WorkflowService>
+const controllerM = WorkflowController as jest.Mock<WorkflowController>
+const serviceM = WorkflowService as jest.Mock<WorkflowService>
 
 
 function setup() {
 
-  //const controller = new WorkflowController as jest.Mocked<WorkflowController>;
-  //const service = new WorkflowService as jest.Mocked<WorkflowService>;
+  const controller = new WorkflowController as jest.Mocked<WorkflowController>;
+  const service = new WorkflowService as jest.Mocked<WorkflowService>;
 
-  const controller = new WorkflowController();
-  const service = new WorkflowService();
+  //const controller = new WorkflowController();
+  //const service = new WorkflowService();
   return {
     controller,
     service
@@ -38,8 +38,6 @@ describe('Workflow Service', () => {
     }
 
     const result = await service.match(user);
-
-    console.log(result);
 
     expect(result).toBe({
       data: {
@@ -75,7 +73,7 @@ describe('Workflow Service', () => {
   })
 
 
-  it('Should trhow error', async () => {
+  it('Should throw error because atributes are not valid', async () => {
     const { controller, service } = setup();
     const user:User = {
       age: 15,
@@ -90,4 +88,6 @@ describe('Workflow Service', () => {
 
     expect(result).toBe(undefined)
   })
+
+
 })
