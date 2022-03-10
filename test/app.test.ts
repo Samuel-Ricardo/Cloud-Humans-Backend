@@ -89,5 +89,16 @@ describe('Workflow Service', () => {
     expect(result).toBe(undefined)
   })
 
+  it('Should throw error because some required atribute are not send', async () => {
+    const { service } = setup();
+    const user = {
+      age: 35,
+      education_level: "no_education",
+      internet_test: { download_speed: 40.8, upload_speed: 35.5 },
+      writing_score: 0.75,
+      referral_code: 'token1234'
+    }
 
+    expect(await service.match(user)).toThrowError
+  })
 })
