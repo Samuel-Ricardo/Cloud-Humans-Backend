@@ -1,6 +1,7 @@
 import WorkflowController from "../src/resources/workflow/workflow.controller"
 import WorkflowService from "../src/resources/workflow/workflow.service"
 import { User } from "../src/types/models/User";
+import { generateScore } from "../src/utils";
 
 jest.mock('../src/resources/workflow/workflow.controller')
 jest.mock("../src/resources/workflow/workflow.service");
@@ -15,27 +16,29 @@ function setup() {
   const controller = new WorkflowController as jest.Mocked<WorkflowController>;
   const service = new WorkflowService as jest.Mocked<WorkflowService>;
 
+  const user:User = {
+    age: 27,
+    education_level: 'bachelors_degree_or_high',
+    past_experiences: { sales: true, support: true },
+    internet_test: { download_speed: 80, upload_speed: 78.9 },
+    writing_score: 1,
+    referral_code: 'token1234'
+  }
+
   //const controller = new WorkflowController();
   //const service = new WorkflowService();
   return {
     controller,
-    service
+    service,
+    user
   }
 }
 
 describe('Workflow Service', () => {
+
   it('Should match project', async () => {
 
-    const { controller, service } = setup();
-
-    const user:User = {
-      age: 27,
-      education_level: 'bachelors_degree_or_high',
-      past_experiences: { sales: true, support: true },
-      internet_test: { download_speed: 80, upload_speed: 78.9 },
-      writing_score: 1,
-      referral_code: 'token1234'
-    }
+    const { controller, service, user } = setup();
 
     const result = await service.match(user);
 
@@ -72,7 +75,6 @@ describe('Workflow Service', () => {
   })
   })
 
-
   it('Should throw error because atributes are not valid', async () => {
     const { controller, service } = setup();
     const user:User = {
@@ -100,5 +102,14 @@ describe('Workflow Service', () => {
     }
 
     expect(await service.match(user)).toThrowError
+  })
+
+})
+
+describe('score calculation', () => {
+  it('should return the correct calculation', () => {
+    const { user } = setup();
+
+    expect(generateScore(user)).toBe(13);
   })
 })
